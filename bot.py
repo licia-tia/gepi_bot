@@ -126,9 +126,10 @@ def reply_forward(update, context):
 
 def reply_sticker(update, context):
     # reply to stickers replied to bot
-    sticker_set = context.bot.get_sticker_set(update.message.sticker.set_name)
-    sticker = random.choice(sticker_set.stickers)
-    update.message.reply_sticker(sticker)
+    if random.random() <= group_settings[update.message.chat.id]:
+        sticker_set = context.bot.get_sticker_set(update.message.sticker.set_name)
+        sticker = random.choice(sticker_set.stickers)
+        update.message.reply_sticker(sticker)
 
 
 def load_settings():
